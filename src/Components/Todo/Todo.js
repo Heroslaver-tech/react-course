@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 //imports icons
 import { IoIosCheckmarkCircleOutline } from "react-icons/io"; //check icon with fill

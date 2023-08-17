@@ -1,6 +1,6 @@
-import TodoCreate from "./TodoCreate";
-import TodoTitle from "./TodoTitle";
-import TodoList from "./TodoList";
+import TodoCreate from "../TodoCreate/TodoCreate";
+import TodoTitle from "../TodoTitle/TodoTitle";
+import TodoList from "../TodoList/TodoList";
 
 const TodoListPanel = () => {
     return (

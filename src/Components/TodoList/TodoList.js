@@ -1,27 +1,26 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import Todo from "../Todo/Todo";
 import "./TodoList.css";
+
 //import context
-import { MyContext } from "./Context";
-import Todo from "./Todo";
+import TodoContext from '../../Context/Todo/TodoContext' 
 
 
 export default function TodoList() {
     //Load the to do list
-    const { data } = useContext(MyContext);
-    const list = data;
-
+    const { todos } = useContext(TodoContext);
     //****************USE STATES********************/
     
     //For change the check status of "to dos"
     const [checks, setChecks] = useState(
-        list.map((element) => {
+        todos.map((element) => {
             return element.checked;
         })
     );
     
     //For change the favorite status of "to dos"
     const [favorites, setFavorites] = useState(
-        list.map((element) => {
+        todos.map((element) => {
             return element.favorited;
         })
     );
@@ -30,7 +29,7 @@ export default function TodoList() {
     const handleCheck = (index) => {
         const newChecks = [...checks];
         newChecks[index] = !checks[index];
-        list[index].checked = !checks[index];
+        todos[index].checked = !checks[index];
         setChecks(newChecks);
     };
 
@@ -38,13 +37,13 @@ export default function TodoList() {
     const handleFavorite = (index) => {
         const newFavorites = [...favorites];
         newFavorites[index] = !favorites[index];
-        list[index].favorited = !favorites[index];
+        todos[index].favorited = !favorites[index];
         setFavorites(newFavorites);
     };
 
     return (
         <div className="container-TodoList">
-            {list.map((element) => {
+            {todos.map((element) => {
                 return (
                     <Todo key={element.id} info={element} handleCheck={handleCheck} handleFavorite={handleFavorite} editable={false} />
                 );

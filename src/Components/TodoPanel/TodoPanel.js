@@ -1,5 +1,5 @@
 import './todoPanel.css'
-import Todo from './Todo'
+import Todo from '../Todo/Todo'
 
 const TodoPanel = () => {
     return(

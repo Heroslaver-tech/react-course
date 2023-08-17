@@ -1,16 +1,16 @@
 import { useContext, useState } from "react";
 import "./todoCreate.css";
 //import context
-import { MyContext } from "./Context";
+import TodoContext from "../../Context/Todo/TodoContext";
 
 //imports icons
 import { HiPlusSmall } from "react-icons/hi2";
 import { HiOutlinePaperAirplane } from "react-icons/hi2";
 
 export default function TodoCreate() {
-    const { data, setData } = useContext(MyContext);
+    const { todos, setTodo } = useContext(TodoContext);
     const [isFocused, setFocused] = useState(false);
-    const [counter, setCounter] = useState(data.length);
+    const [counter, setCounter] = useState(todos.length);
     const [texts, setTexts] = useState("");
 
     const handleFocus = () => {
@@ -24,18 +24,16 @@ export default function TodoCreate() {
     const handleSubmit = () => {
         if(texts === ""){
         }else{
-            const newData = [
-                ...data,
+            const newData = 
                 {
                     id: counter,
                     title: texts,
                     note: "",
                     checked: false,
                     favorited: false,
-                },
-            ];
+                }
             setCounter(counter + 1);
-            setData(newData);
+            setTodo(newData);
             setTexts("");
         }
     };
