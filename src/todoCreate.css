@@ -1,0 +1,74 @@
+.container-todoCreate {
+    position: fixed;
+    bottom: 0px;
+    background-color: rgba(28, 28, 28, 0.9);
+    height: 120px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+.todoCreate {
+    background-color: #292929;
+    color: #7284cf;
+    resize: none;
+    border: 0;
+    padding: 10px 0px 10px 10px;
+    margin: 5px 40px 0px 40px;
+    border-radius: 5px;
+    cursor: text;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+}
+
+.img {
+    width: 32px;
+    height: 40px;
+    padding-right: 20px;
+    padding-left: 20px;
+    position: absolute;
+    transition: opacity 0.1s ease-in-out;
+}
+
+/*Muestra el icono*/
+.img.appear {
+    opacity: 1;
+}
+
+/*Oculta el otro icono*/
+.img.fade {
+    opacity: 0;
+}
+
+.input {
+    background-color: #292929;
+    border: 0;
+    padding: 12px;
+    margin-left: 70px;
+    color: #fff;
+    font-size: 25px;
+}
+
+.input:focus {
+    outline: none;
+    background-color: #3b3b3b;
+}
+
+.todoCreate.focus {
+    background-color: #3b3b3b;
+}
+
+.todoCreate:hover {
+    background-color: #3b3b3b;
+}
+
+.todoCreate:hover .input {
+    background-color: #3b3b3b;
+}
+
+::placeholder {
+    color: #7284cf;
+    opacity: 1;
+}

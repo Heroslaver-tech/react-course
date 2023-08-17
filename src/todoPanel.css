@@ -1,0 +1,23 @@
+.container-todoPanel {
+    background-color: #272727;
+    color: #d3d3d3;
+    border:0.5px blue solid;
+    position:absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 30;
+    width: 40vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.div-container-todoPanel {
+    background-color: #323232;
+    width: 80%;
+    text-align: center;
+    padding: 25px 0px;
+    border-radius: 5px;
+}
