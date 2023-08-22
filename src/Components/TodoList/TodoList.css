@@ -1,52 +1,11 @@
 .container-TodoList {
+    grid-template-rows: 2;
     background-color: #1c1c1c;
     width: 100%;
-    position: relative;
-    top:0px;
-    left:0px;
+    max-height: 75%;
     z-index: 0;
+    position:absolute;
+    top:0px;
     padding:100px 0px 130px 0px;
-    
-}
-.toDo {
-    background-color: #2a2a2a;
-    color: #ffffff;
-    border-radius: 5px;
-    margin: 4px 40px;
-    padding: 15px 10px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 25px;
-}
-
-.button-checked {
-    background-color: #2a2a2a;
-    border: none;
-    color: white;
-    width: 32px;
-    height: 40px;
-}
-
-.toDo:hover .button-checked {
-    background-color: #3b3b3b;
-}
-
-.icon-checked {
-    width: 32px;
-    height: 40px;
-}
-
-.icon-checked-color {
-    width: 32px;
-    height: 40px;
-    color: #7284cf;
-}
-
-.toDo:hover {
-    background-color: #3b3b3b;
-}
-
-.button-h1{
-    display: flex;
-    align-items: center;
+    overflow: auto;
 }

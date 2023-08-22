@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 //imports icons
 import { IoIosCheckmarkCircleOutline } from "react-icons/io"; //check icon with fill
@@ -7,16 +7,23 @@ import { IoIosRadioButtonOff } from "react-icons/io"; //check icon not fill
 import { HiOutlineStar } from "react-icons/hi2"; //star icon not fill
 import { HiStar } from "react-icons/hi2"; //star icon with fill
 
-export default function Todo({ info, handleCheck, handleFavorite, editable }) {
-    //****************USE STATES********************/
+//import Context
+import TodoContext from "../../Context/Todo/TodoContext";
+import "./todo.css";
 
-    //For change the icon when mouse is hover it
+export default function Todo({ info, handleCheck, handleFavorite, editable }) {
+    //****************HOOKS********************/
+    //To change the panel display
+    const { changePanel, selectedTodo } = useContext(TodoContext);
+    //To change the icon when mouse is hover it
     const [hoverCheck, setHoverCheck] = useState(false);
-    //For change the icon when mouse is hover it
+    //To change the icon when mouse is hover it
     const [hoverStar, setHoverStar] = useState(false);
 
+    const [texts, setTexts] = useState(selectedTodo.title);
+
     //****************FUNCTIONS********************/
-    //For change check icon when the mouse enter
+    //To change check icon when the mouse enter
     const handleStarIconEnter = () => {
         setHoverStar(true);
     };
@@ -26,7 +33,7 @@ export default function Todo({ info, handleCheck, handleFavorite, editable }) {
         setHoverStar(false);
     };
 
-    //For change check icon when the mouse enter
+    //To change check icon when the mouse enter
     const handleCheckIconEnter = () => {
         setHoverCheck(true);
     };
@@ -36,17 +43,48 @@ export default function Todo({ info, handleCheck, handleFavorite, editable }) {
         setHoverCheck(false);
     };
 
-    const [panels, setPanels] = useState(false);
+    const changePanelTodo = (id) => {
+        if (editable) {
+        } else {
+            changePanel(id);
+        }
+    };
 
-    const handlePanel = () => {
-        setPanels(!panels);
+    const handleSubmit = () => {
+        if(texts === selectedTodo.title){
+        }else{
+            const newData = {
+                ...selectedTodo,
+                title: texts,
+            }
+            console.log(newData)
+        }
+    };
+
+    const handleEnterPress = (event) => {
+        if (event.key === 'Enter') {
+            handleSubmit(); 
+        }
+    }
+
+    const handleText = (event) => {
+        setTexts(event.target.value)
+    };
+
+    const handleClick = (event) => {
+        if(event.target.id != 'input-todo'){
+            console.log('clickee otra cosa')
+        }
     };
 
     return (
-        <div className="toDo" onClick={handlePanel}>
+        <div
+            className={editable ? "toDo-input" : "toDo"}
+            onClick={() => changePanelTodo(info.id)}
+        >
             <div className="button-h1">
                 <button
-                    className="button-checked"
+                    className={editable ? "button-checked-input" : "button-checked"}
                     onMouseEnter={handleStarIconEnter}
                     onMouseLeave={handleStarIconExit}
                     onClick={() => handleFavorite(info.id)}
@@ -59,10 +97,22 @@ export default function Todo({ info, handleCheck, handleFavorite, editable }) {
                         <HiOutlineStar className="icon-checked" />
                     )}
                 </button>
-                <p style={{ marginLeft: "20px" }}>{info.title}</p>
+                {editable ? (
+                    <input
+                        id='input-todo'
+                        type="text"
+                        className="input-todo"
+                        value={texts}
+                        onChange={handleText}
+                        onKeyDown={handleEnterPress}
+                        onClick={handleClick}
+                    ></input>
+                ) : (
+                    <p style={{ marginLeft: "20px" }}>{info.title}</p>
+                )}
             </div>
             <button
-                className="button-checked"
+                className={editable ? "button-checked-input" : "button-checked"}
                 onMouseEnter={handleCheckIconEnter}
                 onMouseLeave={handleCheckIconExit}
                 onClick={() => handleCheck(info.id)}

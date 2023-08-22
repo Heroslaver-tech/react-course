@@ -1,9 +1,7 @@
 .container-todoCreate {
-    position: fixed;
-    bottom: 0px;
-    background-color: rgba(28, 28, 28, 0.9);
-    height: 120px;
-    width: 100%;
+    grid-row-start:3;
+    width: 98%;
+    background-color: rgba(28, 28, 28, 0.5);
     backdrop-filter: blur(10px);
     z-index: 1;
 }
@@ -12,15 +10,15 @@
     background-color: #292929;
     color: #7284cf;
     resize: none;
+    width: 93%;
     border: 0;
     padding: 10px 0px 10px 10px;
-    margin: 5px 40px 0px 40px;
+    margin: 5px 0px 0px 5%;
     border-radius: 5px;
     cursor: text;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    
 }
 
 .img {
@@ -44,6 +42,7 @@
 
 .input {
     background-color: #292929;
+    width: 100%;
     border: 0;
     padding: 12px;
     margin-left: 70px;

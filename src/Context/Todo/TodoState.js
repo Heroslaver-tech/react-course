@@ -34,7 +34,7 @@ const TodoState = (props) => {
                 favorited: false,
             },
         ],
-        selectedTodo: null,
+        selectedTodo: 0,
         panel: false,
     };
 
@@ -42,24 +42,30 @@ const TodoState = (props) => {
 
     const setTodo = (data) => {
         const NewData = [...state.todos, data];
-        console.log(NewData)
         dispatch({
             type: "SET_TODO",
             payload: NewData,
         });
     };
 
-    const getSelectedTodo = (id) => {
+    const setSelectedTodo = (id) => {
         dispatch({
             type: "GET_SELECTED_TODO",
-            payload: state.todo[id],
+            payload: state.todos[id],
         });
     };
 
-    const changePanel = () => {
+    const changePanel = (id) => {
+        let data = state.panel
+        if (state.panel === true && id === state.selectedTodo.id){
+            data = !state.panel            
+        }else if(state.panel === false){
+            data = !state.panel
+        }
+        setSelectedTodo(id)
         dispatch({
             type: "CHANGE_PANEL",
-            payload: !state.panel,
+            payload: data,
         });
     };
 
@@ -70,7 +76,7 @@ const TodoState = (props) => {
                 selectedTodo: state.selectedTodo,
                 panel: state.panel,
                 setTodo,
-                getSelectedTodo,
+                setSelectedTodo,
                 changePanel,
             }}
         >
